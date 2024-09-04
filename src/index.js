@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { configureStore } from '@reduxjs/toolkit'
+import rootReducer from './reducers';
 
 
 //STORE -> Globalized State
@@ -20,23 +21,9 @@ const decrement = () => {
   }
 };
 
-//REDUCER
-const counter = (state = 0, action) => {
-  switch (action.type) {
-    case 'INCREMENT': 
-      return state + 1;
-    case 'DECREMENT':
-      return state - 1;
-      default:
-        return state;
-  }
-};
 
-const store = configureStore({
-  reducer: {
-    counter
-  }
-});
+const store = configureStore(rootReducer);
+
 store.subscribe(() => console.log(store.getState()));
 
 //DISPATCH
